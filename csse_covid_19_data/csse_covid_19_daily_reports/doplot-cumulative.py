@@ -22,7 +22,7 @@ rule = rrulewrapper(WEEKLY, interval=1)
 loc = RRuleLocator(rule)
 formatter = DateFormatter('%y-%m-%d')
 date1 = datetime.date(2020, 1, 22)
-date2 = datetime.date(2020, 4, 1)
+date2 = datetime.date(2020, 4, 13)
 delta = datetime.timedelta(days=1)
 
 dates = drange(date1, date2, delta)
