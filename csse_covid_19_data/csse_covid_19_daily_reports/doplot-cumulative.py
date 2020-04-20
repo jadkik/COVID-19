@@ -14,19 +14,12 @@ import matplotlib.cm as cmx
 
 import datetime
 
-# ax.set(xlabel='time (s)', ylabel='voltage (mV)',
-#       title='About as simple as it gets, folks')
-# ax.grid()
-
 rule = rrulewrapper(WEEKLY, interval=1)
 loc = RRuleLocator(rule)
 formatter = DateFormatter('%y-%m-%d')
 date1 = datetime.date(2020, 1, 22)
-date2 = datetime.date(2020, 4, 20)
+# date2 = datetime.date.today()
 delta = datetime.timedelta(days=1)
-
-dates = drange(date1, date2, delta)
-s = np.random.rand(len(dates))  # make up some random y values
 
 with open(sys.argv[1], 'r') as f:
     covid_cols, covid_rows = np.loadtxt(f, delimiter=',', usecols=(0, 1), unpack=True, dtype={'names': ('date', 'deaths'), 'formats': ('datetime64[D]', 'f4')})  # np.datetime64, np.float))  # skip_header=1
@@ -36,18 +29,17 @@ with open(sys.argv[2], 'r') as f:
     us_2017_cols, us_2017_rows = us_2017_cols[:-1], us_2017_rows[:-1]  # remove other causes
 #    us_2017_cols, us_2017_rows = us_2017_cols[::-1], us_2017_rows[::-1]  # reverse
 
+date2 = max(covid_cols) + np.timedelta64(1, 'D')
+dates = drange(date1, date2, delta)
+
 my_dpi = 96
 width, height = 1280, 860
 
 fig, ax = plt.subplots(figsize=(width/my_dpi, height/my_dpi), dpi=my_dpi)
 
-# plt.figure(figsize=(width/my_dpi, height/my_dpi), dpi=my_dpi)
-
 plt.gca().xaxis.set_major_formatter(formatter)
-#plt.gca().xaxis.set_major_locator(DayLocator())
 plt.gca().xaxis.set_major_locator(loc)
 
-# plt.plot_date(dates, s)
 plt.plot(dates, covid_rows, label='COVID-19 US Deaths', color='0', lw=2)
 
 #plt.hlines(us_2017_rows, dates[0], dates[-1], linestyles='dotted')
@@ -60,9 +52,6 @@ def estimate_deaths(yearly, date):
     date_diff = end_date - num2date(date).date()
     return yearly * (1 - date_diff.days / 364.25)
 
-# us_2017_total_col, us_2017_total_row = us_2017_cols.pop(0), us_2017_rows.pop(0)
-
-# yint = np.arange(0, n_lines*10, 10)
 cm_name = 'tab20c'  # twilight jet bwr
 cm = plt.get_cmap(cm_name)
 
@@ -87,15 +76,7 @@ for i, label, y in zip(itertools.count(), us_2017_cols, us_2017_rows):
 
 plt.stackplot(d_xs, all_d_ys, labels=all_labels, colors=all_colors, )
 
-#ax.xaxis.set_major_locator(loc)
-#ax.xaxis.set_major_formatter(formatter)
-#ax.xaxis.set_tick_params(rotation=30, labelsize=10)
-
-#plt.plot(x,y)
-
-# ax.legend()
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=3, mode="expand", borderaxespad=0., fontsize='x-small')
-# plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
 
 plt.gcf().autofmt_xdate()
 plt.gca().set_ylim([0, covid_rows[-1] * 1.5])
