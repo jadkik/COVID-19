@@ -22,7 +22,7 @@ rule = rrulewrapper(WEEKLY, interval=1)
 loc = RRuleLocator(rule)
 formatter = DateFormatter('%y-%m-%d')
 date1 = datetime.date(2020, 1, 22)
-date2 = datetime.date(2020, 4, 13)
+date2 = datetime.date(2020, 4, 20)
 delta = datetime.timedelta(days=1)
 
 dates = drange(date1, date2, delta)
@@ -34,7 +34,7 @@ with open(sys.argv[1], 'r') as f:
 with open(sys.argv[2], 'r') as f:
     us_2017_cols, us_2017_rows = np.loadtxt(f, delimiter=';', usecols=(0, 2), unpack=True, dtype={'names': ('cause', 'deaths'), 'formats': ('|U64', 'f4')}, skiprows=2)  # remove header and all causes
     us_2017_cols, us_2017_rows = us_2017_cols[:-1], us_2017_rows[:-1]  # remove other causes
-    us_2017_cols, us_2017_rows = us_2017_cols[::-1], us_2017_rows[::-1]  # reverse
+#    us_2017_cols, us_2017_rows = us_2017_cols[::-1], us_2017_rows[::-1]  # reverse
 
 my_dpi = 96
 width, height = 1280, 860
