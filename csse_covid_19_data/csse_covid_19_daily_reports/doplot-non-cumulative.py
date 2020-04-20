@@ -25,7 +25,7 @@ with open(sys.argv[1], 'r') as f:
     covid_cols, covid_rows = np.loadtxt(f, delimiter=',', usecols=(0, 1), unpack=True, dtype={'names': ('date', 'deaths'), 'formats': ('datetime64[D]', 'f4')})  # np.datetime64, np.float))  # skip_header=1
 
 with open(sys.argv[2], 'r') as f:
-    us_2017_cols, us_2017_rows = np.loadtxt(f, delimiter=';', usecols=(0, 2), unpack=True, dtype={'names': ('cause', 'deaths'), 'formats': ('|U64', 'f4')}, skiprows=2)  # remove header and all causes
+    us_2017_cols, us_2017_rows = np.loadtxt(f, delimiter=';', usecols=(0, 1), unpack=True, dtype={'names': ('cause', 'deaths'), 'formats': ('|U64', 'f4')}, skiprows=2)  # remove header and all causes
     us_2017_cols, us_2017_rows = us_2017_cols[:-1], us_2017_rows[:-1]  # remove other causes
 #    us_2017_cols, us_2017_rows = us_2017_cols[::-1], us_2017_rows[::-1]  # reverse
 
@@ -66,7 +66,7 @@ for i, label, y in zip(itertools.count(), us_2017_cols, us_2017_rows):
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=3, mode="expand", borderaxespad=0., fontsize='x-small')
 
 plt.gcf().autofmt_xdate()
-plt.gca().set_ylim([0, covid_rows[-1] * 1.5])
+plt.gca().set_ylim([0, covid_rows[-1] * 2])
 
 fig.savefig("non-cumulative.png", dpi=my_dpi * 2)
 plt.show()

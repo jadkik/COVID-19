@@ -25,9 +25,9 @@ with open(sys.argv[1], 'r') as f:
     covid_cols, covid_rows = np.loadtxt(f, delimiter=',', usecols=(0, 1), unpack=True, dtype={'names': ('date', 'deaths'), 'formats': ('datetime64[D]', 'f4')})  # np.datetime64, np.float))  # skip_header=1
 
 with open(sys.argv[2], 'r') as f:
-    us_2017_cols, us_2017_rows = np.loadtxt(f, delimiter=';', usecols=(0, 2), unpack=True, dtype={'names': ('cause', 'deaths'), 'formats': ('|U64', 'f4')}, skiprows=2)  # remove header and all causes
+    us_2017_cols, us_2017_rows = np.loadtxt(f, delimiter=';', usecols=(0, 1), unpack=True, dtype={'names': ('cause', 'deaths'), 'formats': ('|U64', 'f4')}, skiprows=2)  # remove header and all causes
     us_2017_cols, us_2017_rows = us_2017_cols[:-1], us_2017_rows[:-1]  # remove other causes
-#    us_2017_cols, us_2017_rows = us_2017_cols[::-1], us_2017_rows[::-1]  # reverse
+    us_2017_cols, us_2017_rows = us_2017_cols[::-1], us_2017_rows[::-1]  # reverse
 
 date2 = max(covid_cols) + np.timedelta64(1, 'D')
 dates = drange(date1, date2, delta)
@@ -42,15 +42,19 @@ plt.gca().xaxis.set_major_locator(loc)
 
 plt.plot(dates, covid_rows, label='COVID-19 US Deaths', color='0', lw=2)
 
-#plt.hlines(us_2017_rows, dates[0], dates[-1], linestyles='dotted')
-#for label, y in zip(us_2017_cols, us_2017_rows):
-#    va = 'bottom' if label == 'Septicemia' else 'top'
-#    plt.text(dates[0], y, f'Avg. monthly deaths by {label} in 2017', ha='left', va=va, fontsize=10)
+plt.hlines(us_2017_rows, dates[0], dates[-1], linestyles='dotted', linewidth=1)
 
 def estimate_deaths(yearly, date):
+    start_date = datetime.date(2020, 1, 1)
     end_date = datetime.date(2020, 12, 31)
-    date_diff = end_date - num2date(date).date()
-    return yearly * (1 - date_diff.days / 364.25)
+    actual_date = num2date(date).date()
+    first_death = datetime.date(2020, 3, 1)
+    if actual_date < first_death:
+        return 0
+    date_diff = end_date - actual_date
+    norm_diff = first_death - start_date
+    y = yearly * (1 - (date_diff.days + norm_diff.days) / 364.25)
+    return y
 
 cm_name = 'tab20c'  # twilight jet bwr
 cm = plt.get_cmap(cm_name)
@@ -65,7 +69,7 @@ all_colors = []
 all_labels = []
 d_xs = [dates[0], dates[-1] + np.timedelta64(2, 'W').astype('float64')]
 for i, label, y in zip(itertools.count(), us_2017_cols, us_2017_rows):
-    d_ys = [estimate_deaths(y, x) for x in d_xs]
+    d_ys = [estimate_deaths(y, x) for x in dates]
     colorVal = index_scalarMap.to_rgba(i)
     linestyle = 'dashed' if d_ys[-1] < max(covid_rows) else 'solid'
     marker = None  # 'x' if d_ys[-1] < max(covid_rows) else None
@@ -74,12 +78,23 @@ for i, label, y in zip(itertools.count(), us_2017_cols, us_2017_rows):
     all_colors.append(colorVal)
     all_labels.append(label)
 
-plt.stackplot(d_xs, all_d_ys, labels=all_labels, colors=all_colors, )
+    va = 'bottom' if label == 'Septicemia' else 'top'
+    plt.text(
+        dates[0] if i % 2 else dates[-1], y,
+        f'Deaths by {label} in 2017',
+        horizontalalignment='left' if i % 2 else 'right',
+        verticalalignment='top' if i % 2 else 'bottom',  # 'baseline'
+        color=colorVal,
+        bbox=dict(facecolor='white', edgecolor='none', alpha=0.8, pad=0.1),
+        fontsize=10,
+    )
+
+plt.stackplot(dates, all_d_ys, labels=all_labels, colors=all_colors, )
 
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=3, mode="expand", borderaxespad=0., fontsize='x-small')
 
 plt.gcf().autofmt_xdate()
-plt.gca().set_ylim([0, covid_rows[-1] * 1.5])
+plt.gca().set_ylim([0, covid_rows[-1] * 2])
 
 fig.savefig("cumulative.png", dpi=my_dpi * 2)
 plt.show()
