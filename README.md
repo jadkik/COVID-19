@@ -17,7 +17,7 @@ http://www.arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c0
 <b>Provided by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE):</b>
 https://systems.jhu.edu/
 
-<b>DONATE to the CSSE dashboard team:</b> https://engineering.jhu.edu/novel-coronavirus-information/support-covid-19-dashboard-team/
+<b>DONATE to the CSSE dashboard team:</b> https://engineering.jhu.edu/covid-19/support-the-csse-covid-19-dashboard-team/
 
 
 <b>DATA SOURCES:</b>
@@ -48,8 +48,8 @@ This list includes a complete list of all sources ever used in the data set, sin
   - Northern Mariana Islands CNMI Department of Public Health: https://cnmichcc.maps.arcgis.com/apps/opsdashboard/index.html#/4061b674fc964efe84f7774b7979d2b5
   - Missouri Department of Health: https://www.arcgis.com/apps/MapSeries/index.html?appid=8e01a5d8d8bd4b4f85add006f9e14a9d
   - Missouri: Nodaway County: https://www.nodawaypublichealth.org/
-  - St. Louis City Department of Health: https://www.stlouis-mo.gov/covid-19/data/#totalsByDate
-  - St. Louis County: https://stlcorona.com/resources/covid-19-statistics1/
+  - Missouri: St. Louis City Department of Health: https://www.stlouis-mo.gov/covid-19/data/#totalsByDate
+  - Missouri: St. Louis County: https://stlcorona.com/resources/covid-19-statistics1/
   - Massachusetts: https://www.mass.gov/info-details/covid-19-response-reporting
   - Michigan: https://www.michigan.gov/coronavirus/0,9753,7-406-98163_98173---,00.html 
   - Illinois Department of Public Health: https://dph.illinois.gov/covid19
@@ -119,7 +119,7 @@ This list includes a complete list of all sources ever used in the data set, sin
   - California Department of Publich Health: https://www.cdph.ca.gov/covid19
   - California: Mariposa County: https://www.mariposacounty.org/1592/COVID-19-Information
   - California: Alameda County Public Health Department: https://covid-19.acgov.org/
-  - California: City of Fresno: https://www.fresno.gov/coronavirus
+  - California: Fresno County Public Health Department: https://www.co.fresno.ca.us/departments/public-health/covid-19
   - California: Humboldt County: https://humboldtgov.org/
   - California: Madera County: https://www.maderacounty.com/government/public-health/corona-virus-covid-19/covid-revised
   - California: Marin County Health & Human Services: https://coronavirus.marinhhs.org/
@@ -150,6 +150,8 @@ This list includes a complete list of all sources ever used in the data set, sin
   - Idaho Government: https://coronavirus.idaho.gov/
   - Virgin Islands Department of Health: https://www.covid19usvi.com/
   - Vermont Department of Health: https://www.healthvermont.gov/response/coronavirus-covid-19/current-activity-vermont
+  - Kansas: Reno County Health Department: https://experience.arcgis.com/experience/9a7d44773e4c4a48b3e09e4d8673961b/page/page_18/
+  - Kansas: Kansas Department Of Health And Environment: https://www.coronavirus.kdheks.gov/160/COVID-19-in-Kansas
 
   
 - Non-US data sources at the country/region (Admin0) or state/province (Admin1) level:
@@ -165,11 +167,12 @@ This list includes a complete list of all sources ever used in the data set, sin
   - Ministry of Health Singapore (MOH): https://www.moh.gov.sg/covid-19
   - Italy Ministry of Health: http://www.salute.gov.it/nuovocoronavirus
   - Dati COVID-19 Italia (Italy): https://github.com/pcm-dpc/COVID-19/tree/master/dati-regioni
+  - Czechia Ministry of Health: https://onemocneni-aktualne.mzcr.cz/covid-19
   - French Government: https://dashboard.covid19.data.gouv.fr/ and https://github.com/opencovid19-fr/data/blob/master/dist/chiffres-cles.json
   - OpenCOVID19 France: https://github.com/opencovid19-fr
   - Palestine (West Bank and Gaza): https://corona.ps/details
   - Israel: https://govextra.gov.il/ministry-of-health/corona/corona-virus/
-  - Ministry of Health, Republic of Kosovo: https://kosova.health/ and https://covidks.s3.amazonaws.com/data.json
+  - National Institute of Health of Kosovo: https://corona-ks.info/?lang=en and https://raw.githubusercontent.com/bgeVam/Kosovo-Coronatracker-Data/master/data.json
   - Berliner Morgenpost (Germany): https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit/
   - rtve (Spain): https://www.rtve.es/noticias/20200514/mapa-del-coronavirus-espana/2004681.shtml
   - Ministry of Health, Republic of Serbia: https://covid19.rs/homepage-english/ 
@@ -177,7 +180,8 @@ This list includes a complete list of all sources ever used in the data set, sin
   - Chile: https://www.gob.cl/coronavirus/cifrasoficiales/
   - Brazil Ministry of Health: https://covid.saude.gov.br/
   - Brazil: https://github.com/wcota/covid19br. Data described in [DOI: 10.1590/SciELOPreprints.362](https://doi.org/10.1590/SciELOPreprints.362)
-  - Gobierono De Mexico:https://covid19.sinave.gob.mx/
+  - Belgium Sciensano: https://datastudio.google.com/embed/reporting/c14a5cfc-cab7-4812-848c-0369173148ab/page/giyUB
+  - Gobierono De Mexico:https://datos.covid-19.conacyt.mx/#DOView
   - Japan COVID-19 Coronavirus Tracker: https://covid19japan.com/#all-prefectures
   - Monitoreo del COVID-19 en Perú -  Policía Nacional del Perú (PNP) - Dirección de Inteligencia (DIRIN): https://www.arcgis.com/apps/opsdashboard/index.html#/f90a7a87af2548699d6e7bb72f5547c2 and Ministerio de Salud del Perú: https://covid19.minsa.gob.pe/sala_situacional.asp
   - Colombia National Institute of Health: http://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx
@@ -190,8 +194,8 @@ This list includes a complete list of all sources ever used in the data set, sin
   - Scottish Government: https://www.gov.scot/publications/coronavirus-covid-19-trends-in-daily-data/
   - Netherlands National Institute for Health and Environment: https://experience.arcgis.com/experience/ea064047519040469acb8da05c0f100d
   - Iceland Directorate of Health and Department of Civil Protection and Emergency Management: https://www.covid.is/data
-  - Luxembourg Government Ministry of Health: https://msan.gouvernement.lu/en/graphiques-evolution.html
-
+  - Luxembourg Government: https://data.public.lu/fr/datasets/covid-19-rapports-journaliers/#_
+    
 
 
 <b>Embed our dashboard into your webpage:</b>
