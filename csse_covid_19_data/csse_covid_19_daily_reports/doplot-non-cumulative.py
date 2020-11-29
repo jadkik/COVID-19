@@ -69,4 +69,4 @@ plt.gcf().autofmt_xdate()
 plt.gca().set_ylim([0, covid_rows[-1] * 2])
 
 fig.savefig("non-cumulative.png", dpi=my_dpi * 2)
-plt.show()
+# plt.show()
